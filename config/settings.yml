@@ -1,0 +1,14 @@
+twitter_app:
+  consumer_key:
+  consumer_secret:
+tweet_user:
+  oauth_token:
+  oauth_secret:
+random_comments:
+  - やったね！
+  - 量多杉！
+menu:
+  2013-05-16: カレー
+  2013-05-17: 豚キムチ炒め
+messages:
+  2013-05-17: 今日は週に一度の金曜日！
