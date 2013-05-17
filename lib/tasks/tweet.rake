@@ -11,14 +11,17 @@ namespace :tweet do
       config.oauth_token        = ENV['OAUTH_TOKEN'] || CONFIG["tweet_user"]["oauth_token"]
       config.oauth_token_secret = ENV['OAUTH_SECRET'] || CONFIG["tweet_user"]["oauth_secret"]
     end
-    Twitter.update(todays_message)
+    tweet_todays_message
   end
 
-  def todays_message
-    message = ["今日の日替定食は #{CONFIG["menu"][Date.today]} です。"]
-    message << CONFIG["messages"][Date.today]
-    random_comments = CONFIG["random_comments"]
-    message << random_comments[rand(random_comments.length * 2)]
-    message.compact.join("\n")[0, 140]
+  def tweet_todays_message
+    menu = CONFIG["menu"][Date.today]
+    if menu
+      message = ["今日の日替定食は #{menu} です。"]
+      message << CONFIG["messages"][Date.today]
+      random_comments = CONFIG["random_comments"]
+      message << random_comments[rand(random_comments.length * 2)]
+      Twitter.update(message.compact.join("\n")[0, 140])
+    end
   end
 end
