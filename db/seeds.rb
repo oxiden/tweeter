@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+seeds = YAML.load_file(Pathname(Rails.root) + "config/seeds.yml")
+[1].each do |shop_id|
+  shop_seed = seeds["shop#{shop_id}"]
+  shop = Shop.create(:id => shop_id, :name => shop_seed["name"])
+  menus = shop_seed["menu"]
+  menus.each do |date, menu|
+    shop.menu.build(:release => date, :title => menu, :memo => "").save!
+  end
+end
