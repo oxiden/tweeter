@@ -42,3 +42,5 @@ group :development do
 end
 
 gem 'twitter'
+gem 'will_paginate'
+gem 'meta_search'

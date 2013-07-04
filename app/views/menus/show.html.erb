@@ -1,3 +1,28 @@
-<h1>Menus#show</h1>
+<% content_for :top do %>
+Menu Details
+<% end %>
 
-<%= @menu.title %>
+<table>
+  <tr>
+    <th>release</th>
+    <td><%= @menu.release %></td>
+  </tr>
+  <tr>
+    <th>title</th>
+    <td><%= @menu.title %></td>
+  </tr>
+  <tr>
+    <th>memo</th>
+    <td><%= @menu.memo %></td>
+  </tr>
+  <tr>
+    <th>created_at</th>
+    <td><%= @menu.created_at %></td>
+  </tr>
+  <tr>
+    <th>updated_at</th>
+    <td><%= @menu.updated_at %></td>
+  </tr>
+</table>
+
+<%= link_to 'Back', shop_menus_path(@menu.shop) %>

@@ -14,4 +14,5 @@ seeds = YAML.load_file(Pathname(Rails.root) + "config/seeds.yml")
   menus.each do |date, menu|
     shop.menu.build(:release => date, :title => menu, :memo => "").save!
   end
+  puts "shop##{shop_id} done."
 end

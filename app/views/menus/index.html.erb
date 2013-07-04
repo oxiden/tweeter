@@ -1,0 +1,35 @@
+<% content_for :top do %>
+Menus
+<% end %>
+
+<%= form_for(@search, :url => shop_menus_path, :html => {:method => :get}) do |f| %>
+  <%= f.label :release %>
+  <%= f.date_select :release_greater_than_or_equal_to, :default => Date.today, :start_year => 2013 %>〜<br/>
+  <%= f.label :title %>
+  <%= f.text_field :title_contains %>
+  <%= f.submit 'search' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>release</th>
+    <th>title</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @menus.each do |menu| %>
+  <tr>
+    <td><%= menu.release %></td>
+    <td><%= menu.title %></td>
+    <td><%= link_to 'Show', shop_menu_path(menu.shop, menu.release) %></td>
+    <td><%= link_to 'Edit', edit_shop_menu_path(menu.shop, menu) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Shops', shops_path %>
+<%# link_to 'New Menu', new_shop_menu_path(params[:shop_id]) %>
+<%= will_paginate @menus, :previous_label=>'«前', :next_label=>'次»' %>

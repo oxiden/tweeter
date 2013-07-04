@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 class Menu < ActiveRecord::Base
-  attr_accessible :memo, :release, :title
+  attr_accessible :release, :title, :memo
   belongs_to :shop
+  default_scope order(:release)
 
   def カレー?
     !!(self.title =~ /カレー/)

@@ -1,0 +1,8 @@
+<% content_for :top do %>
+Editing Menu
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', shop_menu_path(@menu.shop, @menu.release) %> |
+<%= link_to 'Back', shop_menus_path(@menu.shop) %>
