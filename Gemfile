@@ -44,3 +44,7 @@ end
 gem 'twitter'
 gem 'will_paginate'
 gem 'meta_search'
+
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
