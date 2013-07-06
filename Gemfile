@@ -42,7 +42,7 @@ group :development do
 end
 
 gem 'twitter'
-gem 'will_paginate'
+gem 'kaminari'
 gem 'meta_search'
 
 gem 'therubyracer'

@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
 
   def index
     @search = Shop.search(params[:search])
-    @shops = @search.paginate(:page => params[:page], :per_page => 20)
+    @shops = @search.page(params[:page])
   end
   def show
     begin

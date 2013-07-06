@@ -4,7 +4,7 @@ class MenusController < ApplicationController
 
   def index
     @search = Menu.search(params[:search])
-    @menus = @search.paginate(:page => params[:page], :per_page => 20)
+    @menus = @search.page(params[:page])
   end
   def show
     begin
