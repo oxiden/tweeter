@@ -36,25 +36,24 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">今日のランチ</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "twitter", "https://twitter.com/tweet_lunch"  %></li>
-              <li><%# link_to "Link2", "/path2"  %></li>
-              <li><%# link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    <%= nav_bar :fluid => :top, :brand => "今日のランチ 2.0", :responsive => true do %>
+        <%= menu_group do %>
+            <%= menu_item "twitter", "https://twitter.com/tweet_lunch" %>
+            <%# menu_divider %>
+            <%= drop_down "Products" do %>
+                <%= menu_item "セットメニューシリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("とミニ") %>
+                <%= menu_item "炒めシリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("炒め") %>
+                <%= menu_item "丼シリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("丼") %>
+            <% end %>
+            <%= form_for(@search, :url => shop_menus_path, :html => {:method => :get, :class=> "navbar-search pull-left"}) do |f| %>
+                <%= f.text_field :title_contains, :class=>"search-query", :placeholder=>"Search Menus" %>
+            <% end %>
+        <% end %>
+        <%= menu_group :pull => :right do %>
+            <%= menu_item "About us", "https://github.com/oxiden" %>
+            <%= menu_item "Contact", "https://github.com/oxiden" %>
+        <% end %>
+    <% end %>
 
     <div class="container-fluid">
       <div class="row-fluid">
