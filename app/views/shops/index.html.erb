@@ -1,30 +1,34 @@
-<% content_for :top do %>
-Shops
-<% end %>
-
-<%= form_for(@search, :url => shops_path, :html => {:method => :get}) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name_contains %>
-  <%= f.submit 'search' %>
-<% end %>
-
-<table>
-  <tr>
-    <th>name</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @shops.each do |shop| %>
-  <tr>
-    <td><%= shop.name %></td>
-    <td><%= link_to 'Show', shop_menus_path(shop) %></td>
-    <td><%# link_to 'Edit', edit_shop_path(shop) %></td>
-  </tr>
-<% end %>
+<%- model_class = Shop -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= link_to shop.name, shop_menus_path(shop) %></td>
+        <td><%=l shop.created_at %></td>
+        <td>
+          <%# link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_shop_path(shop), :class => 'btn btn-mini' %>
+          <%# link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      shop_path(shop),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%# link_to 'New Shop', new_shop_path %>
-<%= paginate @shops %>
+<%# link_to t('.new', :default => t("helpers.links.new")),
+            new_shop_path,
+            :class => 'btn btn-primary' %>

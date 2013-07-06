@@ -1,8 +1,5 @@
-<% content_for :top do %>
-Editing Menu
-<% end %>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', shop_menu_path(@menu.shop, @menu.release) %> |
-<%= link_to 'Back', shop_menus_path(@menu.shop) %>
+<%- model_class = Menu -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

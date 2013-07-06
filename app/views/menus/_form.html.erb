@@ -1,29 +1,26 @@
-<%= form_for(@menu, :url => shop_menu_path) do |f| %>
-  <% if @menu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
-
-      <ul>
-      <% @meu.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @menu, :url => shop_menu_path, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :release, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :release, :class => 'date_select' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :memo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :memo, :class => 'text_area' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :release %><br />
-    <%= f.date_select :release %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :memo %><br />
-    <%= f.text_area :memo, :size => "20x3" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                shop_menus_path(@menu.shop), :class => 'btn' %>
   </div>
 <% end %>

@@ -1,28 +1,27 @@
-<% content_for :top do %>
-Menu Details
-<% end %>
+<%- model_class = Menu -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<table>
-  <tr>
-    <th>release</th>
-    <td><%= @menu.release %></td>
-  </tr>
-  <tr>
-    <th>title</th>
-    <td><%= @menu.title %></td>
-  </tr>
-  <tr>
-    <th>memo</th>
-    <td><%= @menu.memo %></td>
-  </tr>
-  <tr>
-    <th>created_at</th>
-    <td><%= @menu.created_at %></td>
-  </tr>
-  <tr>
-    <th>updated_at</th>
-    <td><%= @menu.updated_at %></td>
-  </tr>
-</table>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:shop_id) %>:</strong></dt>
+  <dd><%= @menu.shop_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:release) %>:</strong></dt>
+  <dd><%= @menu.release %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @menu.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:memo) %>:</strong></dt>
+  <dd><%= @menu.memo %></dd>
+</dl>
 
-<%= link_to 'Back', shop_menus_path(@menu.shop) %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              shop_menus_path(@menu.shop), :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_shop_menu_path(@menu.shop, @menu), :class => 'btn' %>
+  <%# link_to t('.destroy', :default => t("helpers.links.destroy")),
+              menu_path(@menu),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
