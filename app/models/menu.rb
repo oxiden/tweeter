@@ -2,7 +2,7 @@
 class Menu < ActiveRecord::Base
   attr_accessible :release, :title, :memo
   belongs_to :shop
-  default_scope order(:release)
+  default_scope order(Menu.arel_table[:release].desc)
 
   def カレー?
     !!(self.title =~ /カレー/)
