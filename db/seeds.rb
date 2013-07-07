@@ -9,7 +9,7 @@
 seeds = YAML.load_file(Pathname(Rails.root) + "config/seeds.yml")
 [1].each do |shop_id|
   shop_seed = seeds["shop#{shop_id}"]
-  shop = Shop.create(:id => shop_id, :name => shop_seed["name"])
+  shop = Shop.create(:id => shop_id, :title => shop_seed["name"])
   menus = shop_seed["menu"]
   menus.each do |date, menu|
     shop.menu.build(:release => date, :title => menu, :memo => "").save!

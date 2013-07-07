@@ -25,6 +25,8 @@
         <td><%= menu.memo %></td>
         <td><%=l menu.created_at %></td>
         <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      shop_menu_path(menu.shop, menu.release), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_shop_menu_path(menu.shop, menu), :class => 'btn btn-mini' %>
           <%# link_to t('.destroy', :default => t("helpers.links.destroy")),

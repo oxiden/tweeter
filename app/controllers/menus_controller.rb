@@ -3,13 +3,21 @@ class MenusController < ApplicationController
   respond_to :html, :json
 
   def index
+    unless params[:search]
+      params[:search] = ActiveSupport::HashWithIndifferentAccess.new
+      today = Date.today
+      params[:search]["release_greater_than_or_equal_to(1i)"] = today.year
+      params[:search]["release_greater_than_or_equal_to(2i)"] = today.month
+      params[:search]["release_greater_than_or_equal_to(3i)"] = today.day
+    end
     @search = Menu.search(params[:search])
     @menus = @search.page(params[:page])
   end
   def show
     begin
       shop = Shop.where(:id => params[:shop_id]).first
-      @menu = shop.todays(params[:id])
+      @menu = shop.todays(params[:id]) # params[:id]="YYYY-MM-DD"
+      @search = Menu.search(params[:search])
     rescue NoMethodError, ActiveRecord::StatementInvalid, Shop::NoMenuError
       @menu = nil
     end
@@ -26,6 +34,7 @@ class MenusController < ApplicationController
     end
   end
   def edit
+    @search = Menu.search(params[:search])
     @menu = Menu.find(params[:id])
   end
   def create
