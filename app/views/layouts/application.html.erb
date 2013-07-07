@@ -41,11 +41,11 @@
             <%= menu_item "twitter", "https://twitter.com/tweet_lunch" %>
             <%# menu_divider %>
             <%= drop_down "Products" do %>
-                <%= menu_item "セットメニューシリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("とミニ") %>
-                <%= menu_item "炒めシリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("炒め") %>
-                <%= menu_item "丼シリーズ", shop_menus_path(1) + "?" + u("search[title_contains]") + "=" + u("丼") %>
+                <%= menu_item "セットメニューシリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("とミニ") %>
+                <%= menu_item "炒めシリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("炒め") %>
+                <%= menu_item "丼シリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("丼") %>
             <% end %>
-            <%= form_for(@search, :url => shop_menus_path(1), :html => {:method => :get, :class=> "navbar-search pull-left"}) do |f| %>
+            <%= form_for(@search, :url => shop_menus_path(DEFAULT_SHOP_ID), :html => {:method => :get, :class=> "navbar-search pull-left"}) do |f| %>
                 <%= f.text_field :title_contains, :class=>"search-query", :placeholder=>"Search Menus" %>
             <% end %>
         <% end %>

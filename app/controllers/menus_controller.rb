@@ -15,14 +15,14 @@ class MenusController < ApplicationController
   end
   def show
     begin
-      shop = Shop.where(:id => params[:shop_id]).first
+      shop = Shop.where(:id => params[:shop_id]).first || Shop.find(DEFAULT_SHOP_ID)
       @menu = shop.todays(params[:id]) # params[:id]="YYYY-MM-DD"
       @search = Menu.search(params[:search])
     rescue NoMethodError, ActiveRecord::StatementInvalid, Shop::NoMenuError
-      @menu = nil
+      @menu = shop.menu.build
     end
     respond_to do |format|
-      format.html
+      format.html { @menu.persisted? ? (render :action => :show) : (redirect_to shop_menus_path(shop), alert: 'No Menu.') }
       format.json { render :json => @menu ? @menu.jsonize : @menu.to_json }
     end
   end
