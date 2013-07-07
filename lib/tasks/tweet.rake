@@ -3,7 +3,6 @@ require 'twitter'
 
 namespace :tweet do
   SHOP_ID = 1 # 夕花
-  CONFIG = YAML.load_file(Pathname(Rails.root) + "config/settings.yml")
   desc "tweet todays's message"
   task :yuka => :environment do
     Twitter.configure do |config|

@@ -4,3 +4,4 @@ twitter_app:
 tweet_user:
   oauth_token: 
   oauth_secret: 
+allow_edit: true
