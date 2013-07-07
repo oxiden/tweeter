@@ -8,7 +8,7 @@ class Shop < ActiveRecord::Base
   # retrieve today's lunch menu
   def todays(date = Date.today)
     menu = self.menu.where(:release => date).first
-    raise NoMenuError unless menu
+    raise NoMenuError if menu.nil? or menu.title.blank?
     menu
   end
 end
