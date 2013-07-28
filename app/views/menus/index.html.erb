@@ -8,7 +8,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:release) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -17,8 +16,7 @@
   <tbody>
     <% @menus.each do |menu| %>
       <tr>
-        <td><%= link_to menu.id, shop_menu_path(menu.shop, menu.release) %></td>
-        <td><%= menu.release %></td>
+        <td><%= link_to l(menu.release, :format=>:with_dayname), shop_menu_path(menu.shop, menu.release) %></td>
         <td><%= menu.title %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
