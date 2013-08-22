@@ -97,6 +97,7 @@ GEM
     net-ssh (2.6.8)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.6.6.147)
     passenger (4.0.10)
       daemon_controller (>= 1.1.0)
       rack
@@ -186,6 +187,7 @@ DEPENDENCIES
   kaminari
   less-rails
   meta_search
+  newrelic_rpm
   passenger
   pg
   pry-debugger
