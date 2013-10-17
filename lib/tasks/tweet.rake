@@ -12,5 +12,6 @@ namespace :tweet do
       config.oauth_token_secret = ENV['OAUTH_SECRET'] || CONFIG["tweet_user"]["oauth_secret"]
     end
     Tweet.tweet_todays_message(SHOP_ID)
+    Tweet.tweet_notice_for_curry(SHOP_ID)
   end
 end

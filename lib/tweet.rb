@@ -18,4 +18,21 @@ class Tweet
 ￣Y^Y^Y^Y^Y^Y￣
   EOS
   end
+
+  def self.tweet_notice_for_curry(shop_key = 1, date = Date.today)
+    {7 => "来週はカレー系メニューです", 2 => "明後日はカレー系メニューですよ"}.each do |offset, message|
+      begin
+        menu = Shop.find(shop_key).todays(date + offset)
+        targets = ENV['MENTIONS_TARGET'].to_s.split.uniq
+        if menu.カレー? && targets.present?
+          targets.each do |target|
+            tweet = "#{target} #{message}"[0, 140]
+            Twitter.update(tweet)
+          end
+        end
+      rescue Shop::NoMenuError
+        nil #NOOP
+      end
+    end
+  end
 end
