@@ -20,7 +20,7 @@ class Tweet
   end
 
   def self.tweet_notice_for_curry(shop_key = 1, date = Date.today)
-    {7 => "来週はカレー系メニューです", 2 => "明後日はカレー系メニューですよ"}.each do |offset, message|
+    {7 => "来週はカレー系メニューの日です", 3 => "そろそろカレー系メニューの日ですよ"}.each do |offset, message|
       begin
         menu = Shop.find(shop_key).todays(date + offset)
         targets = ENV['MENTIONS_TARGET'].to_s.split.uniq
