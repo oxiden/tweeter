@@ -56,3 +56,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'newrelic_rpm'
+
+group :production do
+  gem 'rails_12factor'
+end
