@@ -52,7 +52,6 @@ gem 'twitter'
 gem 'kaminari'
 gem 'meta_search'
 
-gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'newrelic_rpm'
