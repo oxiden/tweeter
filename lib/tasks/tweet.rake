@@ -2,9 +2,9 @@
 require 'twitter'
 
 namespace :tweet do
-  SHOP_ID = 1 # 夕花
   desc "tweet todays's message"
   task :yuka => :environment do
+    SHOP_ID = 1 # 夕花
     Twitter.configure do |config|
       config.consumer_key       = ENV['CONSUMER_KEY'] || CONFIG["twitter_app"]["consumer_key"]
       config.consumer_secret    = ENV['CONSUMER_SECRET'] || CONFIG["twitter_app"]["consumer_secret"]
