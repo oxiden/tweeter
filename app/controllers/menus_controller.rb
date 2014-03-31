@@ -60,9 +60,4 @@ class MenusController < ApplicationController
       end
     end
   end
-  def analysis
-    shop = Shop.where(:id => params[:shop_id]).first || Shop.find(DEFAULT_SHOP_ID)
-    @menus = shop.menu
-    @search = Menu.search(params[:search])
-  end
 end

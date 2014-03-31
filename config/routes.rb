@@ -58,10 +58,6 @@ Tweeter::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   resources :shops, :only => [:index, :show] do
-    resources :menus do
-      collection do
-        get 'analysis'
-      end
-    end
+    resources :menus
   end
 end
