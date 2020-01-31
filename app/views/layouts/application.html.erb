@@ -36,53 +36,57 @@
   </head>
   <body>
 
-    <%= nav_bar :fluid => :top, :brand => "今日のランチ 2.0", :responsive => true do %>
-        <%= menu_group do %>
-            <%= menu_item "twitter", "https://twitter.com/tweet_lunch" %>
-            <%# menu_divider %>
-            <%= drop_down "Products" do %>
-                <%= menu_item "セットメニューシリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("とミニ") %>
-                <%= menu_item "炒めシリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("炒め") %>
-                <%= menu_item "丼シリーズ", shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("search[title_contains]") + "=" + u("丼") %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" role="navigation"><div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+        <a class="navbar-brand" href="<%= root_path %>">今日のランチ 3.0</a>
+      </div>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="https://twitter.com/tweet_lunch">twitter</a></li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Products <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="<%= shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("q[title_cont]") + "=" + u("とミニ") %>">セットメニューシリーズ</a></li>
+                <li><a class="dropdown-item" href="<%= shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("q[title_cont]") + "=" + u("炒め") %>">炒めシリーズ</a></li>
+                <li><a class="dropdown-item" href="<%= shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("q[title_cont]") + "=" + u("丼") %>">丼シリーズ</a></li>
+                <li><a class="dropdown-item" href="<%= shop_menus_path(DEFAULT_SHOP_ID) + "?" + u("q[title_cont]") + "=" + u("カレー") %>">カレー系</a></li>
+              </ul>
+            </li>
+            <%= search_form_for(@q, url: shop_menus_path(DEFAULT_SHOP_ID)) do |f| %>
+              <%= f.search_field :title_cont, class: "form-control", placeholder: "Search Menus" %>
             <% end %>
-            <%= form_for(@search, :url => shop_menus_path(DEFAULT_SHOP_ID), :html => {:method => :get, :class=> "navbar-search pull-left"}) do |f| %>
-                <%= f.text_field :title_contains, :class=>"search-query", :placeholder=>"Search Menus" %>
-            <% end %>
-        <% end %>
-        <%= menu_group :pull => :right do %>
-            <%= menu_item "About us", "https://github.com/oxiden" %>
-            <%= menu_item "Contact", "https://github.com/oxiden" %>
-        <% end %>
-    <% end %>
+          </ul>
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="https://github.com/oxiden">About us</a></li>
+            <li><a class="nav-link" href="https://github.com/oxiden">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Direct Link</li>
-              <li><%= link_to "店リスト", shops_path %></li>
-              <li><%= link_to "夕花のメニュー", shop_menus_path(1) %></li>
-              <li><%# link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <%= bootstrap_flash %>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
           <%= yield %>
+        </div>
         </div>
       </div><!--/row-->
 
       <footer>
-        <p>&copy; oxiden 2013</p>
+        <p>&copy; oxiden 2020</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div> <!-- /container-fluid -->
 
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+
 
   </body>
 </html>

@@ -20,16 +20,16 @@
         <td><%= menu.title %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
-                      shop_menu_path(menu.shop, menu.release), :class => 'btn btn-mini' %>
+                      shop_menu_path(menu.shop, menu.release), :class => 'btn btn-outline-primary btn-sm' %>
           <% if CONFIG["allow_edit"] %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_shop_menu_path(menu.shop, menu), :class => 'btn btn-mini' %>
+                      edit_shop_menu_path(menu.shop, menu), :class => 'btn btn-outline-primary' %>
           <% end %>
           <%# link_to t('.destroy', :default => t("helpers.links.destroy")),
                       menu_path(menu),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-outline-danger' %>
         </td>
       </tr>
     <% end %>

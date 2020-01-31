@@ -16,10 +16,10 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              shop_menus_path(@menu.shop), :class => 'btn'  %>
+              shop_menus_path(@menu.shop), :class => 'btn btn-primary'  %>
   <% if CONFIG["allow_edit"] %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_shop_menu_path(@menu.shop, @menu), :class => 'btn' %>
+              edit_shop_menu_path(@menu.shop, @menu), :class => 'btn btn-primary' %>
   <% end %>
   <%# link_to t('.destroy', :default => t("helpers.links.destroy")),
               menu_path(@menu),

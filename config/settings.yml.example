@@ -1,7 +1,0 @@
-twitter_app:
-  consumer_key: 
-  consumer_secret: 
-tweet_user:
-  oauth_token: 
-  oauth_secret: 
-allow_edit: true

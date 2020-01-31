@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -9,23 +8,26 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706095747) do
+ActiveRecord::Schema.define(version: 2013_07_06_095747) do
 
-  create_table "menus", :force => true do |t|
-    t.integer  "shop_id"
-    t.date     "release"
-    t.string   "title"
-    t.text     "memo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "menus", id: :serial, force: :cascade do |t|
+    t.integer "shop_id"
+    t.date "release"
+    t.string "title"
+    t.text "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "shops", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "shops", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
